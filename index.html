@@ -206,9 +206,12 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 <div class="content">
 
 <!-- SAVED BANNER -->
-<div id="savedBanner">
-  ✅ Tienes respuestas guardadas de una sesión anterior.
-  <button onclick="clearSaved()">Borrar y empezar de nuevo</button>
+<div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+  <div id="savedBanner" style="flex:1;margin-bottom:0">
+    ✅ Tienes respuestas guardadas de una sesión anterior.
+    <button onclick="clearSaved()">Borrar y empezar de nuevo</button>
+  </div>
+  <button id="clearBtn" onclick="clearAllAnswers()" style="display:none;background:#fee2e2;border:1px solid #fca5a5;color:#b91c1c;padding:10px 18px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.88em;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0">🗑️ Borrar todas las respuestas</button>
 </div>
 
 <!-- INFO BOX -->
@@ -306,7 +309,7 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 
     <!-- Q5 -->
     <div class="mc-question">
-      <div class="mc-q-text"><span class="mc-q-num">5.</span> In Conversation 5, do exercise…</div>
+      <div class="mc-q-text"><span class="mc-q-num">5.</span> In Conversation 5, the exercise is number…</div>
       <div class="mc-options">
         <label><input type="radio" name="la5" value="A" onchange="saveAll()"><span>a) 6</span></label>
         <label><input type="radio" name="la5" value="B" onchange="saveAll()"><span>b) 60</span></label>
@@ -387,34 +390,34 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 
     <!-- LB Q5 -->
     <div class="mc-question">
-      <div class="mc-q-text"><span class="mc-q-num">5.</span> What is their email address?</div>
+      <div class="mc-q-text"><span class="mc-q-num">5.</span> Where are they from?</div>
       <div class="mc-options">
-        <label><input type="radio" name="lb5" value="A" onchange="saveAll()"><span>a) claraandbeth@gmail.com</span></label>
-        <label><input type="radio" name="lb5" value="B" onchange="saveAll()"><span>b) clarabeth@mail.com</span></label>
-        <label><input type="radio" name="lb5" value="C" onchange="saveAll()"><span>c) clara.beth@mail.com</span></label>
-        <label><input type="radio" name="lb5" value="D" onchange="saveAll()"><span>d) claraandbeth@mail.com</span></label>
+        <label><input type="radio" name="lb5" value="A" onchange="saveAll()"><span>a) They are from Australia.</span></label>
+        <label><input type="radio" name="lb5" value="B" onchange="saveAll()"><span>b) They are from Canada.</span></label>
+        <label><input type="radio" name="lb5" value="C" onchange="saveAll()"><span>c) They are from Ireland.</span></label>
+        <label><input type="radio" name="lb5" value="D" onchange="saveAll()"><span>d) They are from England.</span></label>
       </div>
     </div>
 
     <!-- LB Q6 -->
     <div class="mc-question">
-      <div class="mc-q-text"><span class="mc-q-num">6.</span> What is their address?</div>
+      <div class="mc-q-text"><span class="mc-q-num">6.</span> What is their email?</div>
       <div class="mc-options">
-        <label><input type="radio" name="lb6" value="A" onchange="saveAll()"><span>a) 6 Maple Avenue</span></label>
-        <label><input type="radio" name="lb6" value="B" onchange="saveAll()"><span>b) 19 Maple Avenue</span></label>
-        <label><input type="radio" name="lb6" value="C" onchange="saveAll()"><span>c) 9 Maple Avenue</span></label>
-        <label><input type="radio" name="lb6" value="D" onchange="saveAll()"><span>d) 9 Maple Street</span></label>
+        <label><input type="radio" name="lb6" value="A" onchange="saveAll()"><span>a) claraandbeth@gmail.com</span></label>
+        <label><input type="radio" name="lb6" value="B" onchange="saveAll()"><span>b) clarabeth@mail.com</span></label>
+        <label><input type="radio" name="lb6" value="C" onchange="saveAll()"><span>c) clara.beth@mail.com</span></label>
+        <label><input type="radio" name="lb6" value="D" onchange="saveAll()"><span>d) claraandbeth@mail.com</span></label>
       </div>
     </div>
 
     <!-- LB Q7 -->
     <div class="mc-question">
-      <div class="mc-q-text"><span class="mc-q-num">7.</span> Where are they from?</div>
+      <div class="mc-q-text"><span class="mc-q-num">7.</span> What is their address?</div>
       <div class="mc-options">
-        <label><input type="radio" name="lb7" value="A" onchange="saveAll()"><span>a) They are from Australia.</span></label>
-        <label><input type="radio" name="lb7" value="B" onchange="saveAll()"><span>b) They are from Canada.</span></label>
-        <label><input type="radio" name="lb7" value="C" onchange="saveAll()"><span>c) They are from Ireland.</span></label>
-        <label><input type="radio" name="lb7" value="D" onchange="saveAll()"><span>d) They are from England.</span></label>
+        <label><input type="radio" name="lb7" value="A" onchange="saveAll()"><span>a) 6 Maple Avenue</span></label>
+        <label><input type="radio" name="lb7" value="B" onchange="saveAll()"><span>b) 19 Maple Avenue</span></label>
+        <label><input type="radio" name="lb7" value="C" onchange="saveAll()"><span>c) 9 Maple Avenue</span></label>
+        <label><input type="radio" name="lb7" value="D" onchange="saveAll()"><span>d) 9 Maple Street</span></label>
       </div>
     </div>
 
@@ -645,7 +648,7 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
             </td>
           </tr>
           <tr>
-            <td>4. What is her email address?</td>
+            <td>4. What is her email?</td>
             <td>
               <select class="match-select" id="rb4" onchange="saveAll()">
                 <option value="">—</option>
@@ -708,7 +711,7 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
       <textarea id="w5" placeholder="Write your answer here..." oninput="updateWordCount(); saveAll()"></textarea>
     </div>
     <div class="writing-q-block">
-      <div class="writing-q-label"><span class="q-num">6.</span> What is your email address?</div>
+      <div class="writing-q-label"><span class="q-num">6.</span> What is your email?</div>
       <textarea id="w6" placeholder="Write your answer here..." oninput="updateWordCount(); saveAll()"></textarea>
     </div>
 
@@ -858,7 +861,7 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 <script>
 // ── ANSWER KEYS ──
 const keysLA = { la1:'D', la2:'A', la3:'B', la4:'C', la5:'D' };
-const keysLB = { lb1:'A', lb2:'C', lb3:'A', lb4:'D', lb5:'D', lb6:'C', lb7:'B' };
+const keysLB = { lb1:'B', lb2:'C', lb3:'A', lb4:'D', lb5:'B', lb6:'D', lb7:'C' };
 const keysRA = { ra1:'C', ra2:'D', ra3:'B', ra4:'A', ra5:'C', ra6:'D', ra7:'B', ra8:'A' };
 const keysRB = { rb1:'E', rb2:'A', rb3:'B', rb4:'D' };
 
@@ -868,17 +871,17 @@ const feedbackLA = [
   { q:'2. Ana is at table…',           correct:'a) 5',               exp:'Ana está en la mesa 5 (five), no en la 15 ni en la 50.' },
   { q:'3. Where is Carlos from?',      correct:'b) Mexico',          exp:'Carlos es de México, no de Colombia. Escucha la corrección en la conversación.' },
   { q:'4. Where is Leo from?',         correct:'c) Lisbon',          exp:'Leo es de Lisboa (Lisbon), que se deletrea L-I-S-B-O-N, con una sola S.' },
-  { q:'5. Do exercise…',               correct:'d) 16',              exp:'El ejercicio es el número 16 (sixteen), no el 6 ni el 60.' }
+  { q:'5. The exercise is number…',    correct:'d) 16',              exp:'El ejercicio es el número 16 (sixteen), no el 6 ni el 60.' }
 ];
 
 const feedbackLB = [
-  { q:'1. Where is James from?',            correct:'a) Dublin',                    exp:'James dice: "I\'m from Dublin, in Ireland." Su ciudad es Dublín, Irlanda.' },
+  { q:'1. Where is James from?',            correct:'b) London',                    exp:'James dice: "I\'m from London." Su ciudad es Londres, Inglaterra.' },
   { q:'2. What is his job?',                correct:'c) He is a teacher.',           exp:'James dice: "I\'m an English teacher." Es profesor, no estudiante.' },
   { q:'3. When is he at the language school?', correct:'a) From Monday to Friday.', exp:'James dice que está en la escuela de lunes a viernes (Monday to Friday).' },
   { q:'4. What is his marital status?',     correct:'d) He is married.',            exp:'James dice: "I\'m married." Es casado, no soltero.' },
-  { q:'5. What is their email address?',    correct:'d) claraandbeth@mail.com',     exp:'El correo es claraandbeth@mail.com. Nota: @mail.com, no @gmail.com.' },
-  { q:'6. What is their address?',          correct:'c) 9 Maple Avenue',            exp:'La dirección es 9 (nine) Maple Avenue, no 6 ni 19.' },
-  { q:'7. Where are they from?',            correct:'b) They are from Canada.',     exp:'Clara y Beth son de Vancouver, Canadá (Canada).' }
+  { q:'5. Where are they from?',            correct:'b) They are from Canada.',     exp:'Clara y Beth son de Vancouver, Canadá (Canada).' },
+  { q:'6. What is their email?',            correct:'d) claraandbeth@mail.com',     exp:'El correo es claraandbeth@mail.com. Nota: @mail.com, no @gmail.com.' },
+  { q:'7. What is their address?',          correct:'c) 9 Maple Avenue',            exp:'La dirección es 9 (nine) Maple Avenue, no 6 ni 19.' }
 ];
 
 const feedbackRA = [
@@ -905,16 +908,10 @@ function trackPlay(audioId) {
   if (!playCounts[audioId]) playCounts[audioId] = 0;
   playCounts[audioId]++;
   const counter = document.getElementById('counter_' + audioId);
-  const audio   = document.getElementById(audioId);
   const count   = playCounts[audioId];
   if (count >= 2) {
-    counter.textContent = '⚠️ Límite de 2 reproducciones alcanzado';
+    counter.textContent = 'Plays: 2 / 2';
     counter.className   = 'play-counter limit';
-    audio.addEventListener('ended', () => {
-      audio.controls = false;
-      audio.style.opacity = '0.4';
-      audio.style.pointerEvents = 'none';
-    }, { once: true });
   } else if (count === 1) {
     counter.textContent = 'Plays: 1 / 2 — 1 reproducción restante';
     counter.className   = 'play-counter warning';
@@ -943,6 +940,7 @@ function saveAll() {
     };
     localStorage.setItem(SAVE_KEY, JSON.stringify(data));
     flashToast();
+    checkForAnswers();
   }, 900);
 }
 function g(id) { const el = document.getElementById(id); return el ? el.value : ''; }
@@ -964,6 +962,7 @@ function loadSaved() {
   updateWordCount();
   updateRubric();
   document.getElementById('savedBanner').style.display = 'flex';
+  checkForAnswers();
 }
 function clearSaved() { localStorage.removeItem(SAVE_KEY); location.reload(); }
 function flashToast() { const t = document.getElementById('saveToast'); t.style.display = 'block'; setTimeout(() => { t.style.display = 'none'; }, 1800); }
@@ -994,7 +993,7 @@ function copyForGemini() {
     `3. What is your phone number?\n${g('w3')}`,
     `4. Are you a student?\n${g('w4')}`,
     `5. What are three objects in your classroom?\n${g('w5')}`,
-    `6. What is your email address?\n${g('w6')}`
+    `6. What is your email?\n${g('w6')}`
   ].join('\n\n');
   const allText = ['w1','w2','w3','w4','w5','w6'].map(id => g(id)).join(' ');
   const wordCount = allText.trim().split(/\s+/).filter(w => w.length > 0).length;
@@ -1017,7 +1016,7 @@ Las preguntas eran:
 3. What is your phone number?
 4. Are you a student?
 5. What are three objects in your classroom?
-6. What is your email address?
+6. What is your email?
 
 Estructuras gramaticales requeridas:
 - Verbo TO BE (afirmativo, negativo, pregunta)
@@ -1169,8 +1168,49 @@ function toggleInstr(id) {
   }
 }
 
+
+
+// ── CLEAR BUTTON VISIBILITY ──
+function checkForAnswers() {
+  const hasRadio = !!document.querySelector('input[type="radio"]:checked');
+  const hasSelect = ['rb1','rb2','rb3','rb4'].some(id => { const el = document.getElementById(id); return el && el.value !== ''; });
+  const hasText = ['w1','w2','w3','w4','w5','w6','studentName'].some(id => { const el = document.getElementById(id); return el && el.value.trim() !== ''; });
+  const btn = document.getElementById('clearBtn');
+  if (btn) btn.style.display = (hasRadio || hasSelect || hasText) ? 'block' : 'none';
+}
+
+// ── CLEAR ALL ANSWERS ──
+function clearAllAnswers() {
+  if (!confirm('¿Seguro que quieres borrar todas tus respuestas? Esta acción no se puede deshacer.')) return;
+  // Clear radios
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  // Clear selects
+  ['rb1','rb2','rb3','rb4'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  // Clear textareas
+  ['w1','w2','w3','w4','w5','w6'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  // Clear manual overrides
+  ['manualListening','manualReading'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  // Clear student name
+  const name = document.getElementById('studentName'); if (name) name.value = '';
+  // Clear localStorage
+  localStorage.removeItem(SAVE_KEY);
+  // Hide results
+  document.getElementById('results').style.display = 'none';
+  // Update counters
+  updateWordCount();
+  updateRubric();
+  flashToast();
+  checkForAnswers();
+}
+
 // ── INIT ──
-window.onload = function() { loadSaved(); updateWordCount(); updateRubric(); };
+window.onload = function() { loadSaved(); updateWordCount(); updateRubric(); checkForAnswers(); };
 </script>
 </body>
 </html>
