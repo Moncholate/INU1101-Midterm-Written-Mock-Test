@@ -206,12 +206,9 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 <div class="content">
 
 <!-- SAVED BANNER -->
-<div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
-  <div id="savedBanner" style="flex:1;margin-bottom:0">
-    ✅ Tienes respuestas guardadas de una sesión anterior.
-    <button onclick="clearSaved()">Borrar y empezar de nuevo</button>
-  </div>
-  <button id="clearBtn" onclick="clearAllAnswers()" style="display:none;background:#fee2e2;border:1px solid #fca5a5;color:#b91c1c;padding:10px 18px;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.88em;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0">🗑️ Borrar todas las respuestas</button>
+<div id="savedBanner">
+  🗑️ Tienes respuestas guardadas.
+  <button onclick="clearAllAnswers()">Borrar y empezar de nuevo</button>
 </div>
 
 <!-- INFO BOX -->
@@ -961,7 +958,6 @@ function loadSaved() {
   });
   updateWordCount();
   updateRubric();
-  document.getElementById('savedBanner').style.display = 'flex';
   checkForAnswers();
 }
 function clearSaved() { localStorage.removeItem(SAVE_KEY); location.reload(); }
@@ -1175,8 +1171,8 @@ function checkForAnswers() {
   const hasRadio = !!document.querySelector('input[type="radio"]:checked');
   const hasSelect = ['rb1','rb2','rb3','rb4'].some(id => { const el = document.getElementById(id); return el && el.value !== ''; });
   const hasText = ['w1','w2','w3','w4','w5','w6','studentName'].some(id => { const el = document.getElementById(id); return el && el.value.trim() !== ''; });
-  const btn = document.getElementById('clearBtn');
-  if (btn) btn.style.display = (hasRadio || hasSelect || hasText) ? 'block' : 'none';
+  const banner = document.getElementById('savedBanner');
+  if (banner) banner.style.display = (hasRadio || hasSelect || hasText) ? 'flex' : 'none';
 }
 
 // ── CLEAR ALL ANSWERS ──
