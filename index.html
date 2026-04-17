@@ -108,13 +108,6 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 .criterion-options label:has(input:checked){border-color:#ef4444;background:#fff1f2}
 .rubric-subtotal{background:#fdf2f8;padding:12px 20px;font-weight:700;font-size:0.9em;color:var(--secondary);text-align:right}
 /* Manual override */
-.manual-override{background:#fefce8;border:1px solid #fde047;border-radius:10px;padding:16px 20px;margin-top:20px;font-size:0.88em}
-.manual-override h4{font-size:0.92em;margin-bottom:6px;color:#854d0e;font-weight:700}
-.manual-override p{color:var(--muted);font-size:0.85em;margin-bottom:14px}
-.manual-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
-.manual-row label{color:var(--muted);min-width:220px;font-weight:500}
-.manual-row input{width:90px;border:1px solid #fde047;border-radius:6px;padding:6px 10px;font-family:'DM Sans',sans-serif;font-size:0.93em;background:white;text-align:center;font-weight:600}
-.manual-row input:focus{outline:none;border-color:var(--warning)}
 /* Calculate */
 .calculate-btn{display:block;width:100%;background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;border-radius:14px;padding:18px;font-family:'DM Serif Display',serif;font-size:1.3em;cursor:pointer;margin:30px 0 0;transition:all 0.2s;letter-spacing:0.5px}
 .calculate-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(16,185,129,0.35)}
@@ -243,11 +236,11 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
     <!-- PART A -->
     <div class="part-header">Part A</div>
     <div class="part-instructions">
-      Listen to five (5) short conversations and circle the correct answer for each question. (5 points)<br>
+      Listen to five (5) short conversations and select the correct answer for each question. (5 points)<br>
       <em>Before listening, review the questions carefully.</em><br>
       <button class="instr-toggle" onclick="toggleInstr('es-la')">🌐 Ver en español</button>
       <div class="instr-es" id="es-la">
-        Escucha cinco (5) conversaciones cortas y elige la respuesta correcta para cada pregunta. (5 puntos)<br>
+        Escucha cinco (5) conversaciones cortas y selecciona la respuesta correcta para cada pregunta. (5 puntos)<br>
         <em>Antes de escuchar, revisa las preguntas con cuidado.</em>
       </div>
     </div>
@@ -320,11 +313,11 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
     <!-- PART B -->
     <div class="part-header">Part B</div>
     <div class="part-instructions">
-      Listen to two (2) different people talking about personal information. Circle the correct answer for each question. (7 points)<br>
+      Listen to two (2) different people talking about personal information. Select the correct answer for each question. (7 points)<br>
       <em>Before listening, review the questions carefully.</em><br>
       <button class="instr-toggle" onclick="toggleInstr('es-lb')">🌐 Ver en español</button>
       <div class="instr-es" id="es-lb">
-        Escucha a dos (2) personas diferentes hablando sobre información personal. Elige la respuesta correcta para cada pregunta. (7 puntos)<br>
+        Escucha a dos (2) personas diferentes hablando sobre información personal. Selecciona la respuesta correcta para cada pregunta. (7 puntos)<br>
         <em>Antes de escuchar, revisa las preguntas con cuidado.</em>
       </div>
     </div>
@@ -585,17 +578,15 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
     <!-- PART B -->
     <div class="part-header">Part B</div>
     <div class="part-instructions">
-      Match the questions about a celebrity's personal information with their corresponding answer. Write the letter next to the question. There are two options you will not need. (4 points)<br>
+      Match the questions about a celebrity's personal information with their corresponding answer. Select the letter from the dropdown. There are two options you will not need. (4 points)<br>
       <button class="instr-toggle" onclick="toggleInstr('es-rb')">🌐 Ver en español</button>
       <div class="instr-es" id="es-rb">
-        Relaciona las preguntas sobre información personal de una celebridad con su respuesta correspondiente. Escribe la letra junto a la pregunta. Hay dos opciones que no necesitarás. (4 puntos)
+        Relaciona las preguntas sobre información personal de una celebridad con su respuesta correspondiente. Selecciona la letra en el menú desplegable. Hay dos opciones que no necesitarás. (4 puntos)
       </div>
     </div>
 
     <div>
-      <div style="text-align:center;margin-bottom:18px;">
-        <img src="https://github.com/Moncholate/INU1101-Midterm-Written-Mock-Test/raw/refs/heads/main/Rosal%C3%ADa.avif" alt="Rosalía" style="width:130px;height:160px;object-fit:cover;border-radius:10px;border:2px solid var(--border);">
-      </div>
+      <img src="https://github.com/Moncholate/INU1101-Midterm-Written-Mock-Test/raw/refs/heads/main/Rosal%C3%ADa.avif" alt="Rosalía" style="display:block;margin:0 auto 18px;width:180px;height:220px;object-fit:cover;border-radius:10px;border:2px solid var(--border);">
 
       <div class="options-grid">
         <div class="option-item"><span class="option-letter">a)</span> She is Spanish.</div>
@@ -722,8 +713,8 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 
     <!-- RUBRIC -->
     <div class="rubric-box">
-      <div class="rubric-title">📋 Rúbrica de Evaluación — Writing (para tu profesor)</div>
-      <div class="rubric-note">Esta rúbrica es para que tu profesor evalúe tu writing. No la rellenes tú.</div>
+      <div class="rubric-title">📋 Rúbrica de Evaluación — Writing</div>
+      <div class="rubric-note">Completa esta rúbrica usando la evaluación por criterio que te entregó Gemini. Selecciona el nivel que Gemini indicó para cada criterio.</div>
 
       <div class="criterion">
         <h4>1. Coherencia y Extensión — máx. 4 pts</h4>
@@ -775,19 +766,7 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
   </div><!-- end section-body -->
 </div><!-- end writing section -->
 
-<!-- MANUAL OVERRIDE -->
-<div class="manual-override">
-  <h4>⚙️ Ajuste Manual de Puntaje (solo para el profesor)</h4>
-  <p>Si deseas corregir el puntaje automático de Listening o Reading, ingrésalo aquí. Deja en blanco para usar el puntaje automático.</p>
-  <div class="manual-row">
-    <label>Listening (automático: <span id="autoListDisplay">—</span> / 12):</label>
-    <input type="number" id="manualListening" min="0" max="12" placeholder="0–12" oninput="saveAll()">
-  </div>
-  <div class="manual-row">
-    <label>Reading (automático: <span id="autoReadDisplay">—</span> / 12):</label>
-    <input type="number" id="manualReading" min="0" max="12" placeholder="0–12" oninput="saveAll()">
-  </div>
-</div>
+
 
 <!-- CALCULATE BUTTON -->
 <button class="calculate-btn" onclick="calculateFinalGrade()">
@@ -933,7 +912,6 @@ function saveAll() {
       w1:g('w1'), w2:g('w2'), w3:g('w3'), w4:g('w4'), w5:g('w5'), w6:g('w6'),
       rub1:getRadio('rub1'), rub2:getRadio('rub2'),
       rub3:getRadio('rub3'), rub4:getRadio('rub4'),
-      manualListening:g('manualListening'), manualReading:g('manualReading')
     };
     localStorage.setItem(SAVE_KEY, JSON.stringify(data));
     flashToast();
@@ -953,7 +931,7 @@ function loadSaved() {
    'rub1','rub2','rub3','rub4'].forEach(name => {
     if (d[name]) { const r = document.querySelector(`input[name="${name}"][value="${d[name]}"]`); if (r) r.checked = true; }
   });
-  ['rb1','rb2','rb3','rb4','w1','w2','w3','w4','w5','w6','manualListening','manualReading'].forEach(id => {
+  ['rb1','rb2','rb3','rb4','w1','w2','w3','w4','w5','w6'].forEach(id => {
     const el = document.getElementById(id); if (el && d[id] !== undefined) el.value = d[id];
   });
   updateWordCount();
@@ -1114,13 +1092,8 @@ function calculateFinalGrade() {
   const autoListeningScore = autoLA + autoLB;
   const autoReadingScore   = autoRA + autoRB;
 
-  document.getElementById('autoListDisplay').textContent = autoListeningScore;
-  document.getElementById('autoReadDisplay').textContent = autoReadingScore;
-
-  const manL = document.getElementById('manualListening').value;
-  const manR = document.getElementById('manualReading').value;
-  const finalListening = (manL !== '' && !isNaN(manL)) ? parseFloat(manL) : autoListeningScore;
-  const finalReading   = (manR !== '' && !isNaN(manR)) ? parseFloat(manR) : autoReadingScore;
+  const finalListening = autoListeningScore;
+  const finalReading = autoReadingScore;
 
   const rubVals = ['rub1','rub2','rub3','rub4'].map(n => { const v = getRadio(n); return v ? parseFloat(v) : 0; });
   const writingScore = rubVals.reduce((a,b) => a+b, 0);
@@ -1189,9 +1162,6 @@ function clearAllAnswers() {
     const el = document.getElementById(id); if (el) el.value = '';
   });
   // Clear manual overrides
-  ['manualListening','manualReading'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.value = '';
-  });
   // Clear student name
   const name = document.getElementById('studentName'); if (name) name.value = '';
   // Clear localStorage
