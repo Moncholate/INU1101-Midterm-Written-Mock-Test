@@ -102,11 +102,18 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 .criterion:last-child{border-bottom:none}
 .criterion h4{font-size:0.93em;font-weight:700;margin-bottom:12px;color:var(--text)}
 .criterion-options{display:flex;flex-direction:column;gap:6px}
-.criterion-options label{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:0.88em;line-height:1.4;transition:all 0.15s}
-.criterion-options label:hover{border-color:#fca5a5;background:#fff1f2}
-.criterion-options input[type="radio"]{accent-color:#ef4444;flex-shrink:0;margin-top:2px}
-.criterion-options label:has(input:checked){border-color:#ef4444;background:#fff1f2}
-.rubric-subtotal{background:#fdf2f8;padding:12px 20px;font-weight:700;font-size:0.9em;color:var(--secondary);text-align:right}
+.criterion-options{display:flex;flex-direction:column;gap:8px}
+.criterion-options label{display:grid;grid-template-columns:auto 1fr;gap:0 12px;align-items:start;padding:12px 14px;border:2px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.15s;position:relative}
+.criterion-options label:hover{border-color:#fca5a5;background:#fff9f9}
+.criterion-options input[type="radio"]{accent-color:#ef4444;flex-shrink:0;margin-top:3px;width:16px;height:16px}
+.criterion-options label:has(input:checked){border-color:#ef4444;background:#fff1f2;box-shadow:0 0 0 1px #ef4444}
+.rub-level{font-weight:700;font-size:0.95em;color:var(--text);margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.rub-pts{background:#fee2e2;color:#b91c1c;font-size:0.78em;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.criterion-options label:has(input:checked) .rub-pts{background:#ef4444;color:white}
+.rub-desc{font-size:0.83em;color:var(--muted);line-height:1.5;grid-column:2}
+.check-icon{display:none;position:absolute;top:10px;right:12px;color:#ef4444;font-size:1.1em;font-weight:700}
+.criterion-options label:has(input:checked) .check-icon{display:block}
+.rubric-subtotal{background:#fdf2f8;padding:14px 20px;font-weight:700;font-size:1em;color:var(--secondary);text-align:right;border-top:2px solid #fca5a5}
 /* Manual override */
 /* Calculate */
 .calculate-btn{display:block;width:100%;background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;border-radius:14px;padding:18px;font-family:'DM Serif Display',serif;font-size:1.3em;cursor:pointer;margin:30px 0 0;transition:all 0.2s;letter-spacing:0.5px}
@@ -178,6 +185,163 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
   color: #1e40af;
   line-height: 1.6;
 }
+
+/* ── PROGRESS BAR ── */
+.progress-wrap {
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+}
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.88em;
+  font-weight: 600;
+  color: var(--muted);
+}
+.progress-header span:last-child { color: var(--primary); }
+.progress-track {
+  background: var(--border);
+  border-radius: 20px;
+  height: 10px;
+  overflow: hidden;
+}
+.progress-fill {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.progress-fill.complete { background: linear-gradient(90deg, var(--success), #059669); }
+
+/* ── FEEDBACK SUMMARY ── */
+.feedback-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.summary-card {
+  border-radius: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+}
+.summary-card.listening { background: linear-gradient(135deg, #f5f3ff, #ede9fe); border-color: #c4b5fd; }
+.summary-card.reading   { background: linear-gradient(135deg, #eff6ff, #dbeafe); border-color: #93c5fd; }
+.summary-card h4 { font-family: 'DM Serif Display', serif; font-size: 1em; margin-bottom: 10px; color: var(--text); }
+.summary-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.85em; margin-bottom: 6px; color: var(--muted); }
+.summary-row:last-child { margin-bottom: 0; }
+.summary-score { font-weight: 700; font-size: 1em; }
+.summary-dots { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+.dot { width: 14px; height: 14px; border-radius: 50%; }
+.dot.correct { background: var(--success); }
+.dot.incorrect { background: var(--danger); }
+
+/* ── FILTER TABS ── */
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.filter-tab {
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid var(--border);
+  background: white;
+  color: var(--muted);
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.filter-tab.active { border-color: var(--primary); background: var(--primary); color: white; }
+.filter-tab:hover:not(.active) { border-color: var(--primary-light); color: var(--primary); }
+.feedback-item.hidden { display: none; }
+
+/* ── PERSONALIZED MESSAGES ── */
+.section-feedback-msg {
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-size: 0.88em;
+  line-height: 1.7;
+}
+.section-feedback-msg.great {
+  background: #f0fdf4;
+  border: 1px solid #6ee7b7;
+  border-left: 4px solid var(--success);
+  color: #065f46;
+}
+.section-feedback-msg.good {
+  background: #fefce8;
+  border: 1px solid #fde047;
+  border-left: 4px solid var(--warning);
+  color: #854d0e;
+}
+.section-feedback-msg.needswork {
+  background: #fff1f2;
+  border: 1px solid #fca5a5;
+  border-left: 4px solid var(--danger);
+  color: #9f1239;
+}
+.section-feedback-msg strong { display: block; margin-bottom: 4px; font-size: 1em; }
+.msg-tips { margin-top: 8px; padding-left: 16px; }
+.msg-tips li { margin-bottom: 3px; }
+
+/* ── PRINT BUTTON ── */
+.print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.2s;
+}
+.print-btn:hover { background: var(--primary); color: white; }
+
+/* ── PRINT STYLES ── */
+@media print {
+  body { background: white !important; padding: 0 !important; }
+  .container { box-shadow: none !important; border-radius: 0 !important; max-width: 100% !important; }
+  .header { padding: 20px !important; }
+  .content { padding: 20px !important; }
+  /* Hide interactive elements */
+  .progress-wrap, #savedBanner, .info-box,
+  .audio-container, .mc-question, .lingua-card,
+  .match-table, .options-grid, .celeb-placeholder img,
+  .writing-q-block, .rubric-box, .gemini-btn,
+  .calculate-btn, .filter-tabs, .modal-overlay,
+  #saveToast, #warningModal, #geminiModal,
+  .section.listening .section-body,
+  .section.reading .section-body,
+  .section.writing .section-body,
+  .print-btn { display: none !important; }
+  /* Show only results */
+  #results { display: block !important; }
+  .results-card { border: 1px solid #ccc !important; box-shadow: none !important; }
+  .feedback-item.hidden { display: block !important; }
+  .feedback-item { break-inside: avoid; }
+  .feedback-summary { break-inside: avoid; }
+  .feedback-part { break-inside: avoid; margin-bottom: 16px; }
+  .section-feedback-msg { break-inside: avoid; }
+  /* Print header */
+  .print-header { display: block !important; }
+}
+.print-header { display: none; }
 </style>
 </head>
 <body>
@@ -202,6 +366,18 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 <div id="savedBanner">
   🗑️ Tienes respuestas guardadas.
   <button onclick="clearAllAnswers()">Borrar y empezar de nuevo</button>
+</div>
+
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-header">
+    <span>📝 Progreso del test</span>
+    <span id="progressLabel">0 de 24 preguntas respondidas</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
 </div>
 
 <!-- INFO BOX -->
@@ -719,44 +895,44 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
       <div class="criterion">
         <h4>1. Coherencia y Extensión — máx. 4 pts</h4>
         <div class="criterion-options">
-          <label><input type="radio" name="rub1" value="4" onchange="updateRubric();saveAll()"><span><strong>Totalmente Logrado (4 pts):</strong> 40+ palabras, todas las ideas coherentes con el estímulo y de forma extendida.</span></label>
-          <label><input type="radio" name="rub1" value="3.2" onchange="updateRubric();saveAll()"><span><strong>Logrado (3.2 pts):</strong> 39–30 palabras, ideas coherentes con el estímulo y de forma extendida.</span></label>
-          <label><input type="radio" name="rub1" value="2.4" onchange="updateRubric();saveAll()"><span><strong>Parcialmente Logrado (2.4 pts):</strong> 29–20 palabras, cobertura parcial o alguna idea incoherente.</span></label>
-          <label><input type="radio" name="rub1" value="1.2" onchange="updateRubric();saveAll()"><span><strong>Insuficientemente Logrado (1.2 pts):</strong> 19–10 palabras, baja cobertura o incoherencia general.</span></label>
-          <label><input type="radio" name="rub1" value="0" onchange="updateRubric();saveAll()"><span><strong>No Logrado (0 pts):</strong> Menos de 10 palabras o sin coherencia con el estímulo.</span></label>
+          <label><input type="radio" name="rub1" value="4" onchange="updateRubric();saveAll()"><div><div class="rub-level">Totalmente Logrado <span class="rub-pts">4 pts</span></div><div class="rub-desc">40+ palabras, todas las ideas coherentes con el estímulo y de forma extendida.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub1" value="3.2" onchange="updateRubric();saveAll()"><div><div class="rub-level">Logrado <span class="rub-pts">3.2 pts</span></div><div class="rub-desc">39–30 palabras, ideas coherentes con el estímulo y de forma extendida.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub1" value="2.4" onchange="updateRubric();saveAll()"><div><div class="rub-level">Parcialmente Logrado <span class="rub-pts">2.4 pts</span></div><div class="rub-desc">29–20 palabras, cobertura parcial o alguna idea incoherente.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub1" value="1.2" onchange="updateRubric();saveAll()"><div><div class="rub-level">Insuficientemente Logrado <span class="rub-pts">1.2 pts</span></div><div class="rub-desc">19–10 palabras, baja cobertura o incoherencia general.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub1" value="0" onchange="updateRubric();saveAll()"><div><div class="rub-level">No Logrado <span class="rub-pts">0 pts</span></div><div class="rub-desc">Menos de 10 palabras o sin coherencia con el estímulo.</div></div><span class="check-icon">✓</span></label>
         </div>
       </div>
 
       <div class="criterion">
         <h4>2. Vocabulario — máx. 3 pts</h4>
         <div class="criterion-options">
-          <label><input type="radio" name="rub2" value="3" onchange="updateRubric();saveAll()"><span><strong>Totalmente Logrado (3 pts):</strong> 6+ palabras del vocabulario estudiado en contextos adecuados.</span></label>
-          <label><input type="radio" name="rub2" value="2.4" onchange="updateRubric();saveAll()"><span><strong>Logrado (2.4 pts):</strong> 5 palabras del vocabulario estudiado en contextos adecuados.</span></label>
-          <label><input type="radio" name="rub2" value="1.8" onchange="updateRubric();saveAll()"><span><strong>Parcialmente Logrado (1.8 pts):</strong> 4 palabras del vocabulario estudiado.</span></label>
-          <label><input type="radio" name="rub2" value="0.9" onchange="updateRubric();saveAll()"><span><strong>Insuficientemente Logrado (0.9 pts):</strong> 3 palabras del vocabulario estudiado.</span></label>
-          <label><input type="radio" name="rub2" value="0" onchange="updateRubric();saveAll()"><span><strong>No Logrado (0 pts):</strong> 2 o menos palabras, o vocabulario incorrecto.</span></label>
+          <label><input type="radio" name="rub2" value="3" onchange="updateRubric();saveAll()"><div><div class="rub-level">Totalmente Logrado <span class="rub-pts">3 pts</span></div><div class="rub-desc">6+ palabras del vocabulario estudiado en contextos adecuados.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub2" value="2.4" onchange="updateRubric();saveAll()"><div><div class="rub-level">Logrado <span class="rub-pts">2.4 pts</span></div><div class="rub-desc">5 palabras del vocabulario estudiado en contextos adecuados.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub2" value="1.8" onchange="updateRubric();saveAll()"><div><div class="rub-level">Parcialmente Logrado <span class="rub-pts">1.8 pts</span></div><div class="rub-desc">4 palabras del vocabulario estudiado.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub2" value="0.9" onchange="updateRubric();saveAll()"><div><div class="rub-level">Insuficientemente Logrado <span class="rub-pts">0.9 pts</span></div><div class="rub-desc">3 palabras del vocabulario estudiado.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub2" value="0" onchange="updateRubric();saveAll()"><div><div class="rub-level">No Logrado <span class="rub-pts">0 pts</span></div><div class="rub-desc">2 o menos palabras, o vocabulario incorrecto.</div></div><span class="check-icon">✓</span></label>
         </div>
       </div>
 
       <div class="criterion">
         <h4>3. Gramática — máx. 3 pts</h4>
         <div class="criterion-options">
-          <label><input type="radio" name="rub3" value="3" onchange="updateRubric();saveAll()"><span><strong>Totalmente Logrado (3 pts):</strong> 0–1 errores sin impacto en la comprensión.</span></label>
-          <label><input type="radio" name="rub3" value="2.4" onchange="updateRubric();saveAll()"><span><strong>Logrado (2.4 pts):</strong> 2–3 errores sin impacto en la comprensión.</span></label>
-          <label><input type="radio" name="rub3" value="1.8" onchange="updateRubric();saveAll()"><span><strong>Parcialmente Logrado (1.8 pts):</strong> 4–5 errores, texto aún comprensible.</span></label>
-          <label><input type="radio" name="rub3" value="0.9" onchange="updateRubric();saveAll()"><span><strong>Insuficientemente Logrado (0.9 pts):</strong> 6–7 errores que dificultan la comprensión.</span></label>
-          <label><input type="radio" name="rub3" value="0" onchange="updateRubric();saveAll()"><span><strong>No Logrado (0 pts):</strong> 8+ errores que impiden la comprensión.</span></label>
+          <label><input type="radio" name="rub3" value="3" onchange="updateRubric();saveAll()"><div><div class="rub-level">Totalmente Logrado <span class="rub-pts">3 pts</span></div><div class="rub-desc">0–1 errores sin impacto en la comprensión.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub3" value="2.4" onchange="updateRubric();saveAll()"><div><div class="rub-level">Logrado <span class="rub-pts">2.4 pts</span></div><div class="rub-desc">2–3 errores sin impacto en la comprensión.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub3" value="1.8" onchange="updateRubric();saveAll()"><div><div class="rub-level">Parcialmente Logrado <span class="rub-pts">1.8 pts</span></div><div class="rub-desc">4–5 errores, texto aún comprensible.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub3" value="0.9" onchange="updateRubric();saveAll()"><div><div class="rub-level">Insuficientemente Logrado <span class="rub-pts">0.9 pts</span></div><div class="rub-desc">6–7 errores que dificultan la comprensión.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub3" value="0" onchange="updateRubric();saveAll()"><div><div class="rub-level">No Logrado <span class="rub-pts">0 pts</span></div><div class="rub-desc">8+ errores que impiden la comprensión.</div></div><span class="check-icon">✓</span></label>
         </div>
       </div>
 
       <div class="criterion">
         <h4>4. Ortografía — máx. 2 pts</h4>
         <div class="criterion-options">
-          <label><input type="radio" name="rub4" value="2" onchange="updateRubric();saveAll()"><span><strong>Totalmente Logrado (2 pts):</strong> 0–2 errores ortográficos que no interfieren con la comprensión.</span></label>
-          <label><input type="radio" name="rub4" value="1.6" onchange="updateRubric();saveAll()"><span><strong>Logrado (1.6 pts):</strong> 3–4 errores ortográficos, el mensaje sigue siendo comprensible.</span></label>
-          <label><input type="radio" name="rub4" value="1.2" onchange="updateRubric();saveAll()"><span><strong>Parcialmente Logrado (1.2 pts):</strong> 5–6 errores que afectan parcialmente el mensaje.</span></label>
-          <label><input type="radio" name="rub4" value="0.6" onchange="updateRubric();saveAll()"><span><strong>Insuficientemente Logrado (0.6 pts):</strong> 7–8 errores que dificultan significativamente la comprensión.</span></label>
-          <label><input type="radio" name="rub4" value="0" onchange="updateRubric();saveAll()"><span><strong>No Logrado (0 pts):</strong> 9+ errores que impiden la comprensión.</span></label>
+          <label><input type="radio" name="rub4" value="2" onchange="updateRubric();saveAll()"><div><div class="rub-level">Totalmente Logrado <span class="rub-pts">2 pts</span></div><div class="rub-desc">0–2 errores ortográficos que no interfieren con la comprensión.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub4" value="1.6" onchange="updateRubric();saveAll()"><div><div class="rub-level">Logrado <span class="rub-pts">1.6 pts</span></div><div class="rub-desc">3–4 errores ortográficos, el mensaje sigue siendo comprensible.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub4" value="1.2" onchange="updateRubric();saveAll()"><div><div class="rub-level">Parcialmente Logrado <span class="rub-pts">1.2 pts</span></div><div class="rub-desc">5–6 errores que afectan parcialmente el mensaje.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub4" value="0.6" onchange="updateRubric();saveAll()"><div><div class="rub-level">Insuficientemente Logrado <span class="rub-pts">0.6 pts</span></div><div class="rub-desc">7–8 errores que dificultan significativamente la comprensión.</div></div><span class="check-icon">✓</span></label>
+          <label><input type="radio" name="rub4" value="0" onchange="updateRubric();saveAll()"><div><div class="rub-level">No Logrado <span class="rub-pts">0 pts</span></div><div class="rub-desc">9+ errores que impiden la comprensión.</div></div><span class="check-icon">✓</span></label>
         </div>
       </div>
 
@@ -769,14 +945,14 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 
 
 <!-- CALCULATE BUTTON -->
-<button class="calculate-btn" onclick="calculateFinalGrade()">
+<button class="calculate-btn" onclick="checkBeforeCalculate()">
   📊 Calcular mi nota
 </button>
 
 <!-- RESULTS -->
 <div id="results">
   <div class="results-card">
-    <h3>📊 Resultados del Mock Test</h3>
+    <h3 id="resultsTitle">📊 Resultados del Mock Test</h3>
     <div class="score-row"><span>🎧 Listening</span><span id="resListening">— / 12</span></div>
     <div class="score-row"><span>📖 Reading</span><span id="resReading">— / 12</span></div>
     <div class="score-row"><span>✍️ Writing</span><span id="resWriting">— / 12</span></div>
@@ -787,6 +963,23 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
       <div class="grade-msg" id="gradeMsg"></div>
     </div>
   </div>
+
+  <!-- PRINT BUTTON -->
+  <div style="text-align:right;margin-bottom:12px">
+    <button class="print-btn" onclick="printResults()">🖨️ Guardar / Imprimir resultados</button>
+  </div>
+
+  <!-- FEEDBACK SUMMARY -->
+  <div id="feedbackSummary" class="feedback-summary"></div>
+
+  <!-- FILTER TABS -->
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-filter="incorrect" onclick="filterFeedback('incorrect')">✗ Solo incorrectas</button>
+    <button class="filter-tab" data-filter="all" onclick="filterFeedback('all')">Todas las preguntas</button>
+    <button class="filter-tab" data-filter="correct" onclick="filterFeedback('correct')">✓ Solo correctas</button>
+  </div>
+
+  <div id="msgListening"></div>
 
   <!-- FEEDBACK LISTENING A -->
   <div class="feedback-part">
@@ -799,6 +992,8 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
     <div class="feedback-part-header listening">🎧 Retroalimentación — Listening Part B</div>
     <div id="feedbackLB"></div>
   </div>
+
+  <div id="msgReading"></div>
 
   <!-- FEEDBACK READING A -->
   <div class="feedback-part">
@@ -816,6 +1011,20 @@ audio{width:100%;border-radius:8px;margin-bottom:8px}
 
 </div><!-- end content -->
 </div><!-- end container -->
+
+
+<!-- WARNING MODAL -->
+<div class="modal-overlay" id="warningModal">
+  <div class="modal">
+    <div class="modal-icon">⚠️</div>
+    <h3>Preguntas sin responder</h3>
+    <p id="warningMsg">Tienes preguntas sin responder. ¿Quieres ir a la primera pregunta sin responder o calcular la nota de todas formas?</p>
+    <div class="modal-btns" style="flex-direction:column;gap:10px">
+      <button class="modal-btn go" onclick="goToUnanswered()">📍 Ir a la primera pregunta sin responder</button>
+      <button class="modal-btn cancel" onclick="forceCalculate()">Calcular la nota de todas formas</button>
+    </div>
+  </div>
+</div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="geminiModal">
@@ -916,6 +1125,7 @@ function saveAll() {
     localStorage.setItem(SAVE_KEY, JSON.stringify(data));
     flashToast();
     checkForAnswers();
+    updateProgress();
   }, 900);
 }
 function g(id) { const el = document.getElementById(id); return el ? el.value : ''; }
@@ -1066,7 +1276,7 @@ function buildFeedbackHTML(items, keys, answers, section) {
     const qKey = Object.keys(keys)[i];
     const studentAns = answers[qKey] || '—';
     const isCorrect = studentAns === keys[qKey];
-    return `<div class="feedback-item">
+    return `<div class="feedback-item ${isCorrect ? 'fb-correct' : 'fb-incorrect'}">
       <div class="feedback-q-label">
         <span class="tag ${isCorrect ? 'correct-tag' : 'incorrect-tag'}">${isCorrect ? '✓ Correcto' : '✗ Incorrecto'}</span>
         ${item.q}
@@ -1076,6 +1286,27 @@ function buildFeedbackHTML(items, keys, answers, section) {
       <div class="explanation">💡 ${item.exp}</div>
     </div>`;
   }).join('');
+}
+
+function buildSummaryDots(items, keys, answers) {
+  return Object.keys(keys).map(k => {
+    const isCorrect = (answers[k] || '') === keys[k];
+    return `<div class="dot ${isCorrect ? 'correct' : 'incorrect'}" title="${isCorrect ? 'Correcto' : 'Incorrecto'}"></div>`;
+  }).join('');
+}
+
+function filterFeedback(type) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll(`.filter-tab[data-filter="${type}"]`).forEach(t => t.classList.add('active'));
+  document.querySelectorAll('.feedback-item').forEach(item => {
+    if (type === 'all') {
+      item.classList.remove('hidden');
+    } else if (type === 'incorrect') {
+      item.classList.toggle('hidden', item.classList.contains('fb-correct'));
+    } else {
+      item.classList.toggle('hidden', item.classList.contains('fb-incorrect'));
+    }
+  });
 }
 
 function calculateFinalGrade() {
@@ -1119,6 +1350,41 @@ function calculateFinalGrade() {
   document.getElementById('feedbackRA').innerHTML = buildFeedbackHTML(feedbackRA, keysRA, answersRA);
   document.getElementById('feedbackRB').innerHTML = buildFeedbackHTML(feedbackRB, keysRB, answersRB);
 
+  // Build summary cards
+  const laCorrect = Object.keys(keysLA).filter(k => (answersLA[k]||'') === keysLA[k]).length;
+  const lbCorrect = Object.keys(keysLB).filter(k => (answersLB[k]||'') === keysLB[k]).length;
+  const raCorrect = Object.keys(keysRA).filter(k => (answersRA[k]||'') === keysRA[k]).length;
+  const rbCorrect = Object.keys(keysRB).filter(k => (answersRB[k]||'') === keysRB[k]).length;
+
+  document.getElementById('feedbackSummary').innerHTML = `
+    <div class="summary-card listening">
+      <h4>🎧 Listening</h4>
+      <div class="summary-row"><span>Part A (5 preguntas)</span><span class="summary-score" style="color:${laCorrect>=4?'var(--success)':laCorrect>=3?'var(--warning)':'var(--danger)'}">${laCorrect}/5</span></div>
+      <div class="summary-dots">${buildSummaryDots(feedbackLA, keysLA, answersLA)}</div>
+      <div class="summary-row" style="margin-top:10px"><span>Part B (7 preguntas)</span><span class="summary-score" style="color:${lbCorrect>=6?'var(--success)':lbCorrect>=4?'var(--warning)':'var(--danger)'}">${lbCorrect}/7</span></div>
+      <div class="summary-dots">${buildSummaryDots(feedbackLB, keysLB, answersLB)}</div>
+    </div>
+    <div class="summary-card reading">
+      <h4>📖 Reading</h4>
+      <div class="summary-row"><span>Part A (8 preguntas)</span><span class="summary-score" style="color:${raCorrect>=7?'var(--success)':raCorrect>=5?'var(--warning)':'var(--danger)'}">${raCorrect}/8</span></div>
+      <div class="summary-dots">${buildSummaryDots(feedbackRA, keysRA, answersRA)}</div>
+      <div class="summary-row" style="margin-top:10px"><span>Part B (4 preguntas)</span><span class="summary-score" style="color:${rbCorrect>=4?'var(--success)':rbCorrect>=3?'var(--warning)':'var(--danger)'}">${rbCorrect}/4</span></div>
+      <div class="summary-dots">${buildSummaryDots(feedbackRB, keysRB, answersRB)}</div>
+    </div>`;
+
+  // Inject personalized messages
+  document.getElementById('msgListening').innerHTML = getListeningMsg(laCorrect, lbCorrect, answersLA, answersLB);
+  document.getElementById('msgReading').innerHTML   = getReadingMsg(raCorrect, rbCorrect, answersRA, answersRB);
+
+  // Default filter: incorrect first
+  filterFeedback('incorrect');
+
+  const studentName = document.getElementById('studentName').value.trim();
+  const titleEl = document.getElementById('resultsTitle');
+  titleEl.textContent = studentName
+    ? `📊 Resultados de: ${studentName}`
+    : '📊 Resultados del Mock Test';
+
   document.getElementById('results').style.display = 'block';
   document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -1138,6 +1404,220 @@ function toggleInstr(id) {
 }
 
 
+
+
+
+// ── PERSONALIZED FEEDBACK MESSAGES ──
+function getListeningMsg(laCorrect, lbCorrect, answersLA, answersLB) {
+  const total = laCorrect + lbCorrect;
+  const pct = total / 12;
+
+  // Detect specific error patterns
+  const tips = [];
+  if (answersLA['la1'] !== keysLA['la1']) tips.push('Practica deletrear apellidos en inglés letra por letra (spelling).');
+  if (answersLA['la2'] !== keysLA['la2'] || answersLA['la5'] !== keysLA['la5'])
+    tips.push('Trabaja en distinguir números similares al escuchar: 5/15/50, 16/6/60.');
+  if (answersLA['la3'] !== keysLA['la3']) tips.push('Repasa los nombres de países y nacionalidades en inglés.');
+  if (answersLA['la4'] !== keysLA['la4']) tips.push('Practica deletrear nombres de ciudades en inglés.');
+  if (answersLB['lb1'] !== keysLB['lb1']) tips.push('Presta atención a las ciudades de origen cuando alguien se presenta.');
+  if (answersLB['lb2'] !== keysLB['lb2']) tips.push('Repasa el vocabulario de profesiones: teacher, student, doctor, artist.');
+  if (answersLB['lb3'] !== keysLB['lb3']) tips.push('Practica los días de la semana y expresiones de horario (from Monday to Friday).');
+  if (answersLB['lb4'] !== keysLB['lb4']) tips.push('Repasa el vocabulario de estado civil: married, single, divorced.');
+  if (answersLB['lb5'] !== keysLB['lb5'] || answersLB['lb6'] !== keysLB['lb6'])
+    tips.push('Presta atención a los detalles de contacto: correos y direcciones.');
+  if (answersLB['lb7'] !== keysLB['lb7']) tips.push('Practica identificar el país de origen cuando hay más de una persona hablando.');
+
+  let level, title, intro;
+  if (pct >= 0.83) {
+    level = 'great'; title = '🎉 ¡Excelente trabajo en Listening!';
+    intro = `Obtuviste ${total}/12 puntos. Tu comprensión auditiva está muy bien desarrollada.`;
+  } else if (pct >= 0.58) {
+    level = 'good'; title = '👍 Buen resultado en Listening';
+    intro = `Obtuviste ${total}/12 puntos. Vas por buen camino, pero hay algunos puntos a reforzar.`;
+  } else {
+    level = 'needswork'; title = '📚 Listening necesita refuerzo';
+    intro = `Obtuviste ${total}/12 puntos. Te recomendamos repasar los siguientes contenidos antes del examen:`;
+  }
+
+  const tipsHTML = tips.length > 0
+    ? `<ul class="msg-tips">${tips.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
+  return `<div class="section-feedback-msg ${level}"><strong>${title}</strong>${intro}${tipsHTML}</div>`;
+}
+
+function getReadingMsg(raCorrect, rbCorrect, answersRA, answersRB) {
+  const total = raCorrect + rbCorrect;
+  const pct = total / 12;
+
+  const tips = [];
+  if (answersRA['ra1'] !== keysRA['ra1'] || answersRA['ra5'] !== keysRA['ra5'])
+    tips.push('Practica identificar apellidos (last name / family name) en textos cortos.');
+  if (answersRA['ra2'] !== keysRA['ra2'])
+    tips.push('Presta atención a números y fechas específicas dentro del texto.');
+  if (answersRA['ra3'] !== keysRA['ra3'] || answersRA['ra4'] !== keysRA['ra4'])
+    tips.push('Distingue entre el lugar donde alguien está ahora y su lugar de origen.');
+  if (answersRA['ra6'] !== keysRA['ra6'])
+    tips.push('Lee con atención los detalles sobre personajes secundarios en el texto.');
+  if (answersRA['ra7'] !== keysRA['ra7'])
+    tips.push('Repasa el vocabulario de profesiones y roles (student, teacher, designer).');
+  if (answersRA['ra8'] !== keysRA['ra8'])
+    tips.push('Practica identificar nacionalidades dentro de un texto (French, Turkish, Korean).');
+  if (answersRB['rb1'] !== keysRB['rb1'])
+    tips.push('Repasa cómo se expresa el apellido completo en inglés (last name / full name).');
+  if (answersRB['rb2'] !== keysRB['rb2'])
+    tips.push('Repasa las nacionalidades más comunes: Spanish, French, American, Brazilian.');
+  if (answersRB['rb3'] !== keysRB['rb3'])
+    tips.push('Practica expresar edades con "She is X years old."');
+  if (answersRB['rb4'] !== keysRB['rb4'])
+    tips.push('Familiarízate con el formato de correos electrónicos en inglés.');
+
+  let level, title, intro;
+  if (pct >= 0.83) {
+    level = 'great'; title = '🎉 ¡Excelente trabajo en Reading!';
+    intro = `Obtuviste ${total}/12 puntos. Tu comprensión lectora está muy bien desarrollada.`;
+  } else if (pct >= 0.58) {
+    level = 'good'; title = '👍 Buen resultado en Reading';
+    intro = `Obtuviste ${total}/12 puntos. Vas por buen camino, pero hay algunos puntos a reforzar.`;
+  } else {
+    level = 'needswork'; title = '📚 Reading necesita refuerzo';
+    intro = `Obtuviste ${total}/12 puntos. Te recomendamos repasar los siguientes contenidos antes del examen:`;
+  }
+
+  const tipsHTML = tips.length > 0
+    ? `<ul class="msg-tips">${tips.map(t => `<li>${t}</li>`).join('')}</ul>` : '';
+  return `<div class="section-feedback-msg ${level}"><strong>${title}</strong>${intro}${tipsHTML}</div>`;
+}
+
+
+// ── PRINT RESULTS ──
+function printResults() {
+  // Make sure all feedback items are visible before printing
+  document.querySelectorAll('.feedback-item').forEach(el => el.classList.remove('hidden'));
+  window.print();
+  // Restore filter after print
+  filterFeedback('incorrect');
+}
+
+// ── PROGRESS BAR ──
+const TOTAL_QUESTIONS = 34; // 5 LA + 7 LB + 8 RA + 4 RB + 6 Writing + 4 Rúbrica
+
+function updateProgress() {
+  let answered = 0;
+  // Listening A
+  ['la1','la2','la3','la4','la5'].forEach(n => {
+    if (document.querySelector(`input[name="${n}"]:checked`)) answered++;
+  });
+  // Listening B
+  ['lb1','lb2','lb3','lb4','lb5','lb6','lb7'].forEach(n => {
+    if (document.querySelector(`input[name="${n}"]:checked`)) answered++;
+  });
+  // Reading A
+  ['ra1','ra2','ra3','ra4','ra5','ra6','ra7','ra8'].forEach(n => {
+    if (document.querySelector(`input[name="${n}"]:checked`)) answered++;
+  });
+  // Reading B
+  ['rb1','rb2','rb3','rb4'].forEach(id => {
+    const el = document.getElementById(id); if (el && el.value) answered++;
+  });
+  // Writing
+  ['w1','w2','w3','w4','w5','w6'].forEach(id => {
+    const el = document.getElementById(id); if (el && el.value.trim()) answered++;
+  });
+  // Rúbrica
+  ['rub1','rub2','rub3','rub4'].forEach(n => {
+    if (document.querySelector(`input[name="${n}"]:checked`)) answered++;
+  });
+
+  const pct = Math.round((answered / TOTAL_QUESTIONS) * 100);
+  const fill = document.getElementById('progressFill');
+  const label = document.getElementById('progressLabel');
+  if (fill) {
+    fill.style.width = pct + '%';
+    fill.className = 'progress-fill' + (answered === TOTAL_QUESTIONS ? ' complete' : '');
+  }
+  if (label) {
+    label.textContent = answered === TOTAL_QUESTIONS
+      ? '✅ Todas las preguntas respondidas'
+      : `${answered} de ${TOTAL_QUESTIONS} preguntas respondidas`;
+  }
+  return answered;
+}
+
+// ── FIND FIRST UNANSWERED ──
+function findFirstUnanswered() {
+  const radioGroups = ['la1','la2','la3','la4','la5','lb1','lb2','lb3','lb4','lb5','lb6','lb7','ra1','ra2','ra3','ra4','ra5','ra6','ra7','ra8'];
+  for (const name of radioGroups) {
+    if (!document.querySelector(`input[name="${name}"]:checked`)) {
+      const el = document.querySelector(`input[name="${name}"]`);
+      if (el) return el.closest('.mc-question');
+    }
+  }
+  const selects = ['rb1','rb2','rb3','rb4'];
+  for (const id of selects) {
+    const el = document.getElementById(id);
+    if (el && !el.value) return el.closest('.match-table');
+  }
+  // Writing
+  const writingIds = ['w1','w2','w3','w4','w5','w6'];
+  for (const id of writingIds) {
+    const el = document.getElementById(id);
+    if (el && !el.value.trim()) return el.closest('.writing-q-block');
+  }
+  // Rúbrica
+  const rubNames = ['rub1','rub2','rub3','rub4'];
+  for (const name of rubNames) {
+    if (!document.querySelector(`input[name="${name}"]:checked`)) {
+      const el = document.querySelector(`input[name="${name}"]`);
+      if (el) return el.closest('.criterion');
+    }
+  }
+  return null;
+}
+
+function goToUnanswered() {
+  closeWarningModal();
+  const target = findFirstUnanswered();
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.style.outline = '3px solid var(--warning)';
+    setTimeout(() => { target.style.outline = ''; }, 2500);
+  }
+}
+
+function closeWarningModal() {
+  document.getElementById('warningModal').classList.remove('active');
+}
+
+function forceCalculate() {
+  closeWarningModal();
+  calculateFinalGrade();
+}
+
+// ── OVERRIDE CALCULATE TO CHECK FIRST ──
+function checkBeforeCalculate() {
+  const answered = updateProgress();
+  if (answered < TOTAL_QUESTIONS) {
+    const missing = TOTAL_QUESTIONS - answered;
+    // Detect what's missing specifically
+    const missingWriting = ['w1','w2','w3','w4','w5','w6'].filter(id => {
+      const el = document.getElementById(id); return !el || !el.value.trim();
+    }).length;
+    const missingRubric = ['rub1','rub2','rub3','rub4'].filter(n =>
+      !document.querySelector(`input[name="${n}"]:checked`)
+    ).length;
+    const missingMC = missing - missingWriting - missingRubric;
+
+    let details = [];
+    if (missingMC > 0) details.push(`${missingMC} pregunta${missingMC > 1 ? 's' : ''} de Listening o Reading`);
+    if (missingWriting > 0) details.push(`${missingWriting} pregunta${missingWriting > 1 ? 's' : ''} de Writing`);
+    if (missingRubric > 0) details.push(`${missingRubric} criterio${missingRubric > 1 ? 's' : ''} de la rúbrica`);
+
+    document.getElementById('warningMsg').textContent =
+      `Faltan: ${details.join(', ')}. ¿Quieres ir a la primera sección incompleta o calcular la nota de todas formas?`;
+    document.getElementById('warningModal').classList.add('active');
+  } else {
+    calculateFinalGrade();
+  }
+}
 
 // ── CLEAR BUTTON VISIBILITY ──
 function checkForAnswers() {
@@ -1176,7 +1656,7 @@ function clearAllAnswers() {
 }
 
 // ── INIT ──
-window.onload = function() { loadSaved(); updateWordCount(); updateRubric(); checkForAnswers(); };
+window.onload = function() { loadSaved(); updateWordCount(); updateRubric(); checkForAnswers(); updateProgress(); };
 </script>
 </body>
 </html>
